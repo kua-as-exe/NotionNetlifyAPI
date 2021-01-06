@@ -2189,7 +2189,7 @@ let css = `.notion {
 
 const getPageContentXD = async (id) => {
     const recordMap = await notion.getPage(id);
-    //console.log(notionStyles)
+    //  console.log(notionStyles)
     /* let cssModule = [
         "../node_modules/react-notion-x/src/styles.css",
         "../node_modules/prismjs/themes/prism-tomorrow.css",

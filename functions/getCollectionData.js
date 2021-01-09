@@ -47,7 +47,7 @@ const getPageData = async (id) => {
     ])) */.map( async (block) => {
         let { id, properties: t } = block;
         let properties = {}
-         Object.keys(schema).forEach( key => {
+         Object.keys(schema).forEach( async (key) => {
             let propKey = collection.schema[key].name;
             let propValue = clean(block.properties[key]);
 

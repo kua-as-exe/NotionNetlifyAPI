@@ -3,6 +3,21 @@ const notion = new NotionAPI();
 
 const {extractProps, clean} = require('../helpers/notion-helpers');
 
+const modificators = {
+    'Autor': async (item) => {
+        try{
+            let authorID = item[1][0][1];
+            notion.getUsers([authorID]).then(result => {
+                let userData = result.results[0].value;
+                let name = `${userData.given_name} ${userData.family_name}`
+                return name
+            })
+        }catch(e){
+            return item
+        }
+    }
+}
+
 const getPageData = async (id) => {
     const output = await notion.getPage(id);
         
@@ -14,7 +29,8 @@ const getPageData = async (id) => {
     ])
     let schema = collection.schema
     let blocks = output.block;
-    const processed = Object.keys(blocks).map( key => 
+    const processed = await 
+    Object.keys(blocks).map( key => 
         blocks[key].value
     ).filter( block => (
         block.type == 'page'
@@ -26,12 +42,14 @@ const getPageData = async (id) => {
         // 'properties', 
         // 'created_by_id', 
         // 'last_edited_by_id'
-    ])) */.map( block => {
+    ])) */.map( async (block) => {
         let { id, properties: t } = block;
         let properties = {}
          Object.keys(schema).forEach( key => {
             let propKey = collection.schema[key].name;
             let propValue = clean(block.properties[key]);
+
+            if(modificators[propKey]) propValue = await modificators[propKey](propValue);
 
             properties[propKey] = clean(propValue)
         //     /*if(propValue && propValue.length && propValue.length == 1)

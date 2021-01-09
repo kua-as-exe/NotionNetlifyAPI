@@ -36,7 +36,7 @@ const getPageData = async (id) => {
         blocks[key].value
     ).filter( block => (
         block.type == 'page'
-    )).map( async (block) => {
+    )).map( (block) => {
         let { id, properties: t } = block;
         let properties = {}
         await Object.keys(schema).forEach( async (key) => {

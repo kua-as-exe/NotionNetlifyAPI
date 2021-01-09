@@ -33,7 +33,7 @@ const getPageData = async (id) => {
             let propKey = collection.schema[key].name;
             let propValue = clean(block.properties[key]);
 
-            properties[propKey] = clean(propValue[0])
+            properties[propKey] = clean(propValue)
         //     /*if(propValue && propValue.length && propValue.length == 1)
         //          properties[propKey] = propValue[0]
         //     else

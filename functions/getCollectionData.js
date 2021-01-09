@@ -27,18 +27,18 @@ const getPageData = async (id) => {
         // 'created_by_id', 
         // 'last_edited_by_id'
     ])) */.map( block => {
-        let { id, properties } = block;
-        //let properties = {}
-        // Object.keys(collection.schema).forEach( key => {
-        //     let propKey = collection.schema[key].name;
-        //     let prop = block.properties[key];
+        let { id, properties: t } = block;
+        let properties = {}
+         Object.keys(schema).forEach( key => {
+            let propKey = collection.schema[key].name;
+            let propValue = clean(block.properties[key]);
 
-        //     properties[propKey] = clean(prop[0])
+            properties[propKey] = clean(propValue[0])
         //     /*if(propValue && propValue.length && propValue.length == 1)
         //          properties[propKey] = propValue[0]
         //     else
         //         properties[propKey] = propValue */
-        // })
+        })
         return ({ id, ...properties })
     })
 

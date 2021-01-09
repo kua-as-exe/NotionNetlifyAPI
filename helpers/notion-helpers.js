@@ -1,5 +1,5 @@
 const clean = (value) => {
-    if(!!value) value
+    if(!!value) null;
     if(typeof(value) == 'object' && value.length && value.length == 1)
         value = clean(value[0])
     return value;

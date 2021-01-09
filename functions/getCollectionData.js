@@ -39,22 +39,17 @@ const getPageData = async (id) => {
     )).map( async (block) => {
         let { id, properties: t } = block;
         let properties = {}
-         Object.keys(schema).forEach( async (key) => {
+        await Object.keys(schema).forEach( async (key) => {
             let propKey = collection.schema[key].name;
             let propValue = clean(block.properties[key]);
-            properties[propKey] = clean(propValue)
             if(modificators[propKey]) propValue = await modificators[propKey](propValue);
-
-        //     /*if(propValue && propValue.length && propValue.length == 1)
-        //          properties[propKey] = propValue[0]
-        //     else
-        //         properties[propKey] = propValue */
+            
+            properties[propKey] = clean(propValue)
         })
         return ({ id, ...properties })
     })
 
-    // collection.blocks = processed
-    return {schema, users, processed};
+    return {users, processed};
 }
 
 exports.handler = async (event) => {

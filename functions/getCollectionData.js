@@ -2,14 +2,16 @@ const NotionAPI = require('notion-client').NotionAPI;
 const notion = new NotionAPI();
 
 const {extractProps, clean} = require('../helpers/notion-helpers');
-
+let users = {}
 const modificators = {
     'Autor': async (item) => {
         try{
             let authorID = item[1][0][1];
+            if(users[authorID]) return users[authorID];
             notion.getUsers([authorID]).then(result => {
                 let userData = result.results[0].value;
                 let name = `${userData.given_name} ${userData.family_name}`
+                users[authorID] = name;
                 return name
             })
         }catch(e){
@@ -29,7 +31,7 @@ const getPageData = async (id) => {
     ])
     let schema = collection.schema
     let blocks = output.block;
-    const processed = await 
+    const processed =
     Object.keys(blocks).map( key => 
         blocks[key].value
     ).filter( block => (

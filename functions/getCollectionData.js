@@ -1,7 +1,7 @@
 const NotionAPI = require('notion-client').NotionAPI;
 const notion = new NotionAPI();
 
-const {extractProps, clean} = require('../helpers/notion-helpers');
+const {extractProps, clean, uniqueName} = require('../helpers/notion-helpers');
 // const {extractProps, clean} = require('./helpers/notion-helpers');
 
 getPageData = async (id) => {
@@ -61,16 +61,17 @@ getPageData = async (id) => {
                 block.properties[key] = await modificators[key](value);
             }
         }
+        block.url = uniqueName(block.properties.Name)
     }
     processed = processed.filter( filters[0] )
     processed = processed.map( ({id, properties}) => ({id, ...properties}))
     // return {users, processed};
     return processed;
 }
-// ( async() => {
-//     xd = await getPageData("1b489ba4bc6b4c4b963c7bca626dc497");
-//     console.log(xd)
-// })()
+( async() => {
+    xd = await getPageData("1b489ba4bc6b4c4b963c7bca626dc497");
+    console.log(xd)
+})()
 
 exports.handler = async (event) => {
     const id = event.queryStringParameters.id ;

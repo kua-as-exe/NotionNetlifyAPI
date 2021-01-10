@@ -68,10 +68,10 @@ getPageData = async (id) => {
     // return {users, processed};
     return processed;
 }
-( async() => {
+/* ( async() => {
     xd = await getPageData("1b489ba4bc6b4c4b963c7bca626dc497");
     console.log(xd)
-})()
+})() */
 
 exports.handler = async (event) => {
     const id = event.queryStringParameters.id ;

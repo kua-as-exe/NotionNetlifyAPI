@@ -61,7 +61,7 @@ getPageData = async (id) => {
                 block.properties[key] = await modificators[key](value);
             }
         }
-        block.url = uniqueName(block.properties.Name)
+        block.properties.url = uniqueName(block.properties.Name)
     }
     processed = processed.filter( filters[0] )
     processed = processed.map( ({id, properties}) => ({id, ...properties}))

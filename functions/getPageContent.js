@@ -2216,7 +2216,13 @@ const getPageContentXD = async (id) => {
       ${css}
       </style>
       ${notionHTML}
-      <style>.notion-page {width: 80vw !important;}</style>
+      <style>
+      .notion-page {
+        width: 100% !important;
+        margin: 0;
+        padding: 0;
+      }
+      </style>
       </body>
     </html>
     `);

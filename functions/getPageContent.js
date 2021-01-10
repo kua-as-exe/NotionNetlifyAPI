@@ -2231,11 +2231,14 @@ const getPageContentXD = async (id) => {
       </style>
       ${notionHTML}
       <style>
-      .notion-page {
-        width: 100% !important;
-        margin: 0;
-        padding: 0;
-      }
+        .notion-page {
+          width: 100% !important;
+          margin: 0;
+          padding: 0;
+        }
+        .notion-collection-row{
+          display: none;
+        }
       </style>
       <script>
       ${iframeResizer}

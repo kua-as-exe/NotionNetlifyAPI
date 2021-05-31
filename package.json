@@ -4,8 +4,8 @@
   "description": "A",
   "main": "index.js",
   "dependencies": {
-    "next": "^10.0.4",
-    "notion-client": "^4.5.2",
+    "next": "^10.2.3",
+    "notion-client": "^4.6.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-notion": "^0.9.3",

@@ -42,7 +42,7 @@ getPageData = async (id) => {
     let processed = Object.keys(blocks).map( key => 
         blocks[key].value
     ).filter( block => (
-        block.type == 'page'
+        block && block.type == 'page'
     )).map( (block) => {
         let { id, properties: prevProps } = block;
         let properties = {}
